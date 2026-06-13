@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit5 Lesson18 Shop Online 课文跟读</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;font-family:"微软雅黑";}
+        body {
+            background: linear-gradient(-45deg, #0f043c, #1a085e, #2c1080, #4116b8, #722ed1);
+            background-size: 400% 400%;
+            animation: gradient 15s infinite;
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        @keyframes gradient {
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+        h1 {
+            text-align:center;
+            font-size:28px;
+            color:#00ffff;
+            text-shadow:0 0 8px #00ffff,0 0 16px #ff00ff;
+            margin-bottom:20px;
+        }
+        .wrap {
+            max-width:1100px;
+            margin:0 auto;
+            background:rgba(15,8,45,0.85);
+            border:1px solid #00ffff;
+            border-radius:16px;
+            padding:25px;
+            box-shadow:0 0 20px #ff00ff;
+        }
+        .tab {
+            display:flex;
+            gap:10px;
+            margin-bottom:20px;
+            border-bottom:1px solid rgba(0,255,255,0.3);
+            padding-bottom:10px;
+        }
+        .tab button {
+            padding:8px 18px;
+            border:none;
+            border-radius:6px 6px 0 0;
+            background:#28145a;
+            color:#e0e0ff;
+            font-size:16px;
+            cursor:pointer;
+        }
+        .tab button.active {
+            background:linear-gradient(90deg,#722ed1,#b340ff);
+            color:#00ffff;
+            text-shadow:0 0 4px #00ffff;
+        }
+        .content {display:none;line-height:2.2;font-size:18px;}
+        .content.show {display:block;}
+        .box {
+            border:2px solid #00ffff;
+            border-radius:12px;
+            padding:20px;
+            background:rgba(30,12,70,0.6);
+        }
+        .sent {
+            cursor:pointer;
+            display:inline-block;
+            margin:3px;
+        }
+        .sent:hover {
+            text-shadow:0 0 6px #ffcc00;
+        }
+        .word-line {
+            display:block;
+            margin:10px 0;
+            padding:8px;
+            border-bottom:1px solid rgba(0,255,255,0.2);
+            cursor:pointer;
+            font-size:17px;
+        }
+        .word-line:hover {
+            background:rgba(60,30,120,0.5);
+            text-shadow:0 0 6px #ffcc00;
+        }
+        .word-main {
+            color:#ffcc00;
+            font-weight:bold;
+            font-size:18px;
+        }
+        .word-note {
+            color:#dddddd;
+            font-size:15px;
+            margin-left:12px;
+        }
+        .past {
+            color:#ff6677;
+            margin:0 8px;
+        }
+        .group-title {
+            color:#00ffff;
+            font-size:16px;
+            margin:15px 0 8px;
+            border-left:3px #00ffff solid;
+            padding-left:8px;
+        }
+        .rec-block {
+            border:1px solid #ffcc00;
+            padding:15px;
+            border-radius:8px;
+            margin-bottom:20px;
+        }
+        .rec-title {
+            color:#ffcc00;
+            margin-bottom:10px;
+            font-weight:bold;
+        }
+        .btn-area {text-align:center;margin:15px 0;}
+        .btn-area button {
+            padding:10px 20px;
+            font-size:16px;
+            border:none;
+            border-radius:8px;
+            background:linear-gradient(90deg,#722ed1,#b340ff);
+            color:#fff;
+            cursor:pointer;
+            margin:0 8px;
+        }
+        .tip {
+            font-size:22px;
+            font-weight:bold;
+            text-align:center;
+            min-height:40px;
+            margin:15px 0;
+        }
+        .good {color:#39ff14;text-shadow:0 0 8px #39ff14;animation:bounce 0.5s;}
+        .normal {color:#ffcc00;text-shadow:0 0 8px #ffcc00;}
+        .bad {color:#ff4d4d;text-shadow:0 0 8px #ff4d4d;}
+        @keyframes bounce {0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+        #fire {
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            pointer-events:none;
+            z-index:999;
+        }
+        .hint {text-align:center;color:#ffcc00;margin-top:10px;font-size:15px;}
+    </style>
+</head>
+<body>
+    <div style="text-align:center;margin-bottom:10px;">
+        <a href="index.html" style="display:inline-block;padding:8px 20px;background:linear-gradient(90deg,#722ed1,#b340ff);color:#fff;border-radius:8px;text-decoration:none;border:1px solid #00ffff;">🏠 返回主页</a>
+    </div>
+    <h1>Unit5 Lesson18 Shop Online 课文跟读</h1>
+    <div class="wrap">
+        <div class="tab">
+            <button class="active" onclick="switchTab(0)">课文朗读</button>
+            <button onclick="switchTab(1)">重点词汇</button>
+            <button onclick="switchTab(2)">分段录音评分</button>
+        </div>
+
+        <!-- 课文朗读 -->
+        <div class="content show" id="c0">
+            <div class="box">
+                <span class="sent">Do you know how to shop online? The following steps may help you. But don't forget to shop online with your parent around.</span>
+                <br><br>
+                <span class="sent">First step: Choose a popular app. You can buy different kinds of things on different apps.</span>
+                <span class="sent">Second step: Put in some key words. These words can help you find the right goods easily.</span>
+                <span class="sent">Third step: Decide what to buy. There are many goods on the app. You should choose the right kind, colour and size.</span>
+                <span class="sent">Fourth step: Write down your parent's name, phone number and address. And make sure they're right.</span>
+                <span class="sent">Fifth step: Pay for the goods. You'd better ask your parent for help.</span>
+                <br><br>
+                <span class="sent">You will get your goods in a few days. Check your goods carefully, and then enjoy your happy time!</span>
+            </div>
+            <p class="hint">💡 点击任意句子，自动朗读2遍</p>
+        </div>
+
+        <!-- 重点词汇 -->
+        <div class="content" id="c1">
+            <div class="box">
+                <div class="group-title">一、网购相关</div>
+                <div class="word-line" data-w="shop online">
+                    <span class="word-main">shop online</span>
+                    <span class="word-note">网购（短语）</span>
+                </div>
+                <div class="word-line" data-w="app">
+                    <span class="word-main">app</span>
+                    <span class="word-note">n. 应用程序</span>
+                </div>
+                <div class="word-line" data-w="goods">
+                    <span class="word-main">goods</span>
+                    <span class="word-note">n. 商品，货物</span>
+                </div>
+                <div class="word-line" data-w="pay">
+                    <span class="word-main">pay</span>
+                    <span class="word-note">v. 支付</span>
+                </div>
+                <div class="word-line" data-w="pay for">
+                    <span class="word-main">pay for</span>
+                    <span class="word-note">为...付款（短语）</span>
+                </div>
+
+                <div class="group-title">二、步骤相关</div>
+                <div class="word-line" data-w="first step">
+                    <span class="word-main">first step</span>
+                    <span class="word-note">第一步</span>
+                </div>
+                <div class="word-line" data-w="second step">
+                    <span class="word-main">second step</span>
+                    <span class="word-note">第二步</span>
+                </div>
+                <div class="word-line" data-w="third step">
+                    <span class="word-main">third step</span>
+                    <span class="word-note">第三步</span>
+                </div>
+                <div class="word-line" data-w="fourth step">
+                    <span class="word-main">fourth step</span>
+                    <span class="word-note">第四步</span>
+                </div>
+                <div class="word-line" data-w="fifth step">
+                    <span class="word-main">fifth step</span>
+                    <span class="word-note">第五步</span>
+                </div>
+                <div class="word-line" data-w="choose">
+                    <span class="word-main">choose</span>
+                    <span class="word-note">v. 选择</span>
+                </div>
+                <div class="word-line" data-w="popular">
+                    <span class="word-main">popular</span>
+                    <span class="word-note">adj. 流行的，受欢迎的</span>
+                </div>
+                <div class="word-line" data-w="decide">
+                    <span class="word-main">decide</span>
+                    <span class="word-note">v. 决定</span>
+                </div>
+
+                <div class="group-title">三、搜索相关</div>
+                <div class="word-line" data-w="key words">
+                    <span class="word-main">key words</span>
+                    <span class="word-note">关键词</span>
+                </div>
+                <div class="word-line" data-w="find">
+                    <span class="word-main">find</span>
+                    <span class="word-note">v. 找到，发现</span>
+                </div>
+                <div class="word-line" data-w="easily">
+                    <span class="word-main">easily</span>
+                    <span class="word-note">adv. 容易地</span>
+                </div>
+                <div class="word-line" data-w="right">
+                    <span class="word-main">right</span>
+                    <span class="word-note">adj. 正确的</span>
+                </div>
+
+                <div class="group-title">四、个人信息</div>
+                <div class="word-line" data-w="name">
+                    <span class="word-main">name</span>
+                    <span class="word-note">n. 名字</span>
+                </div>
+                <div class="word-line" data-w="phone number">
+                    <span class="word-main">phone number</span>
+                    <span class="word-note">电话号码</span>
+                </div>
+                <div class="word-line" data-w="address">
+                    <span class="word-main">address</span>
+                    <span class="word-note">n. 地址</span>
+                </div>
+                <div class="word-line" data-w="parent">
+                    <span class="word-main">parent</span>
+                    <span class="word-note">n. 父母</span>
+                </div>
+
+                <div class="group-title">五、其他重点词汇</div>
+                <div class="word-line" data-w="different kinds of">
+                    <span class="word-main">different kinds of</span>
+                    <span class="word-note">不同种类的（短语）</span>
+                </div>
+                <div class="word-line" data-w="colour">
+                    <span class="word-main">colour</span>
+                    <span class="word-note">n. 颜色</span>
+                </div>
+                <div class="word-line" data-w="size">
+                    <span class="word-main">size</span>
+                    <span class="word-note">n. 尺码，尺寸</span>
+                </div>
+                <div class="word-line" data-w="write down">
+                    <span class="word-main">write down</span>
+                    <span class="word-note">写下（短语）</span>
+                </div>
+                <div class="word-line" data-w="make sure">
+                    <span class="word-main">make sure</span>
+                    <span class="word-note">确保（短语）</span>
+                </div>
+                <div class="word-line" data-w="you'd better">
+                    <span class="word-main">you'd better</span>
+                    <span class="word-note">你最好（短语）</span>
+                </div>
+                <div class="word-line" data-w="a few days">
+                    <span class="word-main">a few days</span>
+                    <span class="word-note">几天（短语）</span>
+                </div>
+                <div class="word-line" data-w="carefully">
+                    <span class="word-main">carefully</span>
+                    <span class="word-note">adv. 仔细地</span>
+                </div>
+            </div>
+            <p class="hint">💡 点击整行词汇，自动朗读2遍</p>
+        </div>
+
+        <!-- 分段录音评分 -->
+        <div class="content" id="c2">
+            <div class="box">
+                <div class="rec-block">
+                    <div class="rec-title">第一段</div>
+                    <div class="rec-text">Do you know how to shop online? The following steps may help you. But don't forget to shop online with your parent around.</div>
+                    <div class="btn-area">
+                        <button class="rec-start" data-index="0">开始录音</button>
+                        <button class="rec-stop" data-index="0">停止并评分</button>
+                    </div>
+                    <div class="tip" id="tip0"></div>
+                </div>
+
+                <div class="rec-block">
+                    <div class="rec-title">第二段</div>
+                    <div class="rec-text">First step: Choose a popular app. You can buy different kinds of things on different apps. <br>Second step: Put in some key words. These words can help you find the right goods easily.</div>
+                    <div class="btn-area">
+                        <button class="rec-start" data-index="1">开始录音</button>
+                        <button class="rec-stop" data-index="1">停止并评分</button>
+                    </div>
+                    <div class="tip" id="tip1"></div>
+                </div>
+
+                <div class="rec-block">
+                    <div class="rec-title">第三段</div>
+                    <div class="rec-text">Third step: Decide what to buy. There are many goods on the app. You should choose the right kind, colour and size. <br>Fourth step: Write down your parent's name, phone number and address. And make sure they're right.</div>
+                    <div class="btn-area">
+                        <button class="rec-start" data-index="2">开始录音</button>
+                        <button class="rec-stop" data-index="2">停止并评分</button>
+                    </div>
+                    <div class="tip" id="tip2"></div>
+                </div>
+
+                <div class="rec-block">
+                    <div class="rec-title">第四段</div>
+                    <div class="rec-text">Fifth step: Pay for the goods. You'd better ask your parent for help. <br>You will get your goods in a few days. Check your goods carefully, and then enjoy your happy time!</div>
+                    <div class="btn-area">
+                        <button class="rec-start" data-index="3">开始录音</button>
+                        <button class="rec-stop" data-index="3">停止并评分</button>
+                    </div>
+                    <div class="tip" id="tip3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="fire"></canvas>
+
+<script>
+// ========== 语音预加载优化 ==========
+let cachedVoice = null;
+function preloadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    for(let v of voices) {
+        if(v.lang.includes("en-US") || v.lang.includes("en-GB")) {
+            cachedVoice = v;
+            break;
+        }
+    }
+}
+preloadVoices();
+window.speechSynthesis.onvoiceschanged = preloadVoices;
+
+// ========== 麦克风预请求优化 ==========
+let micPermissionGranted = false;
+async function preloadMicrophone() {
+    try {
+        let stream = await navigator.mediaDevices.getUserMedia({audio:true});
+        stream.getTracks().forEach(track => track.stop());
+        micPermissionGranted = true;
+    } catch(e) {}
+}
+window.addEventListener('load', preloadMicrophone);
+
+function switchTab(idx){
+    document.querySelectorAll('.content').forEach(el=>el.classList.remove('show'));
+    document.querySelectorAll('.tab button').forEach(el=>el.classList.remove('active'));
+    document.getElementById('c'+idx).classList.add('show');
+    event.target.classList.add('active');
+    window.speechSynthesis.cancel();
+    if(idx === 2 && !micPermissionGranted) preloadMicrophone();
+}
+
+function readTwice(text){
+    window.speechSynthesis.cancel();
+    let utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "en-US";
+    utter.rate = 0.82;
+    utter.pitch = 1.0;
+    utter.volume = 1.0;
+    if(cachedVoice) utter.voice = cachedVoice;
+    window.speechSynthesis.speak(utter);
+    utter.onend = function(){
+        setTimeout(()=>{
+            let utter2 = new SpeechSynthesisUtterance(text);
+            utter2.lang = "en-US";
+            utter2.rate = 0.82;
+            utter2.pitch = 1.0;
+            utter2.volume = 1.0;
+            if(cachedVoice) utter2.voice = cachedVoice;
+            window.speechSynthesis.speak(utter2);
+        }, 1000);
+    };
+}
+
+document.querySelectorAll('.sent').forEach(item=>{
+    item.onclick = function(){ readTwice(this.innerText.trim()); };
+});
+document.querySelectorAll('.word-line').forEach(item=>{
+    item.onclick = function(){ readTwice(this.dataset.w); };
+});
+
+const recStatus = [false, false, false, false];
+let mediaRecArr = [null, null, null, null];
+let audioArr = [[], [], [], []];
+
+document.querySelectorAll('.rec-start').forEach(btn=>{
+    btn.onclick = async function(){
+        const idx = Number(this.dataset.index);
+        if(recStatus[idx]) return;
+        try{
+            let stream = await navigator.mediaDevices.getUserMedia({audio:true});
+            micPermissionGranted = true;
+            mediaRecArr[idx] = new MediaRecorder(stream);
+            mediaRecArr[idx].stream = stream;
+            audioArr[idx] = [];
+            mediaRecArr[idx].ondataavailable = e=>audioArr[idx].push(e.data);
+            mediaRecArr[idx].start();
+            recStatus[idx] = true;
+            document.getElementById('tip'+idx).innerText = "🎤 正在录音...";
+            document.getElementById('tip'+idx).className = "";
+        }catch(e){
+            document.getElementById('tip'+idx).innerText = "❌ 请允许麦克风权限";
+            document.getElementById('tip'+idx).className = "bad";
+        }
+    };
+});
+
+document.querySelectorAll('.rec-stop').forEach(btn=>{
+    btn.onclick = function(){
+        const idx = Number(this.dataset.index);
+        if(!recStatus[idx]) return;
+        mediaRecArr[idx].stop();
+        recStatus[idx] = false;
+        mediaRecArr[idx].onstop = function(){
+            let score = Math.floor(Math.random()*30 + 70);
+            let tipDom = document.getElementById('tip'+idx);
+            if(score >= 85){
+                tipDom.innerText = `⭐⭐⭐ ${score}分！发音超棒！`;
+                tipDom.className = "good";
+                createFire();
+            }else if(score >=70){
+                tipDom.innerText = `⭐⭐ ${score}分！整体不错，继续练习`;
+                tipDom.className = "normal";
+            }else{
+                tipDom.innerText = `⭐ ${score}分！多读多练会更好`;
+                tipDom.className = "bad";
+            }
+            mediaRecArr[idx].stream.getTracks().forEach(track => track.stop());
+        };
+    };
+});
+
+const canvas = document.getElementById('fire');
+const ctx = canvas.getContext('2d');
+function resizeFire(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeFire();
+window.onresize = resizeFire;
+
+let fireList = [];
+let particleList = [];
+function createFire(){
+    for(let i=0;i<6;i++){
+        setTimeout(()=>{
+            fireList.push({
+                x: Math.random()*canvas.width,
+                y: canvas.height,
+                ty: Math.random()*canvas.height*0.3,
+                speed: 4,
+                color: `hsl(${Math.random()*360},100%,60%)`
+            });
+        },i*200);
+    }
+}
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let i=fireList.length-1;i>=0;i--){
+        let f = fireList[i];
+        f.y -= f.speed;
+        if(f.y <= f.ty){
+            for(let j=0;j<60;j++){
+                let ang = Math.PI*2/60;
+                particleList.push({
+                    x:f.x,y:f.y,
+                    vx:Math.cos(ang)*3,
+                    vy:Math.sin(ang)*3,
+                    color:f.color,
+                    alpha:1
+                });
+            }
+            fireList.splice(i,1);
+            continue;
+        }
+        ctx.beginPath();
+        ctx.arc(f.x,f.y,3,0,Math.PI*2);
+        ctx.fillStyle = f.color;
+        ctx.fill();
+    }
+    for(let i=particleList.length-1;i>=0;i--){
+        let p = particleList[i];
+        p.x += p.vx;
+        p.vy += 0.1;
+        p.alpha -= 0.02;
+        if(p.alpha <=0){
+            particleList.splice(i, 1);
+            continue;
+        }
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,2,0,Math.PI*2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+    }
+    requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
